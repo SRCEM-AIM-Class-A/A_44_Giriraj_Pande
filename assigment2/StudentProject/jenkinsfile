@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/SRCEM-AIM-Class-A/A_44_Giriraj_Pande.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t gspande/studentproject .'
+            }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                withDockerRegistry([credentialsId: 'docker-hub-credentials', url: '']) {
+                    sh 'docker push your-dockerhub-username/studentproject'
+                }
+            }
+        }
+    }
+}
