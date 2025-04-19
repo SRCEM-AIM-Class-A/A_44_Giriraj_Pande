@@ -1,0 +1,10 @@
+services:
+  flask-app:
+    build: ./flask_app
+    ports:
+      - "5000:5000"   # Flask → http://localhost:5000
+
+  django-app:
+    build: ./django_app
+    ports:
+      - "8000:8000"   # Django → http://localhost:8000
